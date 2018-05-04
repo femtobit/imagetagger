@@ -18,6 +18,9 @@ class Image(models.Model):
     checksum = models.BinaryField()
     width = models.IntegerField(default=800)
     height = models.IntegerField(default=600)
+    
+    class Meta:
+        unique_together = (('image_set', 'name'),)
 
     def path(self):
         return os.path.join(self.image_set.root_path(), self.filename)
